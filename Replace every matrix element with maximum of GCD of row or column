@@ -1,0 +1,63 @@
+//  https://www.geeksforgeeks.org/replace-matrix-element-maximum-gcd-row-column/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+void solve( ll n , ll m ,ll arr[][m]){
+	ll row[n], col[m];
+	for(ll i=0;i<n ;i++){
+		ll g=0;
+		for(ll j=0;j<m;j++){
+			g=__gcd(g,arr[i][j]);
+		}
+		row[i]=g;
+	}
+	for(ll i=0;i<m;i++){
+		ll g=0; 
+		for(ll j=0;j<n;j++){
+			g=__gcd(g , arr[j][i]);
+		}
+		col[i]=g;
+	}
+	for(ll i=0;i<n;i++){
+		for(ll j=0;j<m ;j++){
+			cout<<max(row[i],col[j])<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n , M ;
+		cin>>n>>M;
+		ll arr[n][M];
+		for(ll i=0;i<n;i++){
+			for(ll j=0;j<M;j++){
+				cin>>arr[i][j];
+			}
+		}
+		solve(n , M,arr);
+	}
+
+	return 0;
+}
