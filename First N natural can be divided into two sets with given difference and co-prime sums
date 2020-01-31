@@ -1,0 +1,50 @@
+//  https://www.geeksforgeeks.org/first-n-natural-can-be-divided-into-two-sets-with-given-difference-and-co-prime-sums/
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+void solve(ll n, ll m){
+	ll s1 = n*n+n+2*m;
+	if(s1%4!=0){
+		cout<<"NO"<<endl;
+	}
+	else{
+		s1=s1/4;
+		// cerr<<s1<<" ";
+		ll s2 = s1-m;
+		if(__gcd(s1,s2)==1){
+			cout<<"YES"<<endl;
+		}
+		else{
+			cout<<"NO"<<endl;
+		}
+	}
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t ;
+	cin>>t;
+	while(t--){
+		ll n , m ;
+		cin>>n>>m;
+		solve(n , m);
+	}
+
+	return 0;
+}
