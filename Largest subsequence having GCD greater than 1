@@ -1,0 +1,58 @@
+//  https://www.geeksforgeeks.org/largest-subsequence-gcd-greater-1/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+ll solve(ll* arr , ll n){
+	ll freq[100005]={0};
+	for(ll i=0;i<n ;i++){
+		for(ll j=1;j*j<=arr[i];j++){
+			if(arr[i]%j==0){
+				if(j*j==arr[i]){
+					freq[j]++;
+				}
+				else{
+					freq[j]++;
+					freq[arr[i]/j]++;
+				}
+			}
+		}
+	}
+	ll mx =0;
+	for(ll i=2;i<=40;i++){
+		mx = max(mx,freq[i]);
+	}
+	return mx;
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n ;
+		cin>>n ;
+		ll arr[n];
+		for(ll i=0;i<n;i++)cin>>arr[i];
+		ll ans = solve(arr , n);
+		cout<<ans<<endl;
+	}
+
+	return 0;
+}
