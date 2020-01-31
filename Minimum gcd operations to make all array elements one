@@ -1,0 +1,65 @@
+//  https://www.geeksforgeeks.org/minimum-gcd-operations-make-array-elements-one/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+void solve(ll* arr , ll n){
+	ll mn = 1000000;
+	ll cnt1=0;
+	for(ll i=0;i<n ;i++){
+		if(arr[i]==1)cnt1++;
+	}
+	if(cnt1!=0){
+		cout<<n-cnt1<<endl;
+		return ;
+	}
+	for(ll i=0;i<n;i++){
+		ll g=0;
+		for(ll j=i;j<n ;j++){
+			g=__gcd(g,arr[j]);
+			if(g==1){
+				mn = min(mn, j-i);
+				break;
+			}
+		}
+	}
+	if(mn==1000000){
+		cout<<"-1"<<endl;
+		return ;-
+	}
+	cout<<n+mn-1<<endl;
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n ;
+		cin>>n ;
+		ll arr[n];
+		for(ll i=0;i<n;i++){
+			cin>>arr[i];
+		}
+
+		solve(arr , n);
+	}
+
+	return 0;
+}
