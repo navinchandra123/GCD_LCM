@@ -1,0 +1,61 @@
+//  https://www.geeksforgeeks.org/lcm-first-n-natural-numbers/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+vector<ll> prime;
+void sieve(){
+	bool si[1000005]={false};
+	for(ll i=2;i*i<=1000000;i++){
+		if(si[i]==0){
+			for(ll j=i*i ; j<1000000 ; j+=i){
+				si[j]=1;
+			}
+		}
+	}
+	for(ll i=2;i<=1000000;i++){
+		if(si[i]==0){
+			prime.pb(i);
+		}
+	}
+}
+ll solve(ll n){
+	ll lcm=1;
+	for(ll i=0;prime[i]<=n ; i++){
+		ll p=prime[i];
+		while(p*prime[i]<=n){
+			p=p*prime[i];
+		}
+		lcm*=p;
+	}
+	return lcm;
+}
+
+int main(){
+	mahakal();fast;
+	sieve();
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n ;
+		cin>>n ;
+		ll ans = solve(n);
+		cout<<ans<<endl;
+	}
+
+	return 0;
+}
