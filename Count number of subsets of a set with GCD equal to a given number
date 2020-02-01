@@ -1,0 +1,63 @@
+//  https://www.geeksforgeeks.org/count-number-of-subsets-of-a-set-with-gcd-equal-to-a-given-number/
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+ll ans[100005];
+void solve(ll* arr , ll n){
+	ll m =*max_element(arr,arr+n);
+	ll freq[m+10]={0};
+	for(ll i=0;i<n ; i++){
+		freq[arr[i]]++;
+	}
+	for(ll i=m ; i>=1 ; i--){
+		ll add=freq[i];
+		ll sub=0;
+		for(ll j =2*i ;j<=m ; j+=i){
+			add+=freq[j];
+			sub+=ans[j];
+		}
+		ans[i]=(1<<add)-1-sub;
+	}
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n ;
+		cin>>n;
+		ll arr[n];
+		for(ll i=0;i<n;i++){
+			cin>>arr[i];
+		}
+		ll m ;
+		cin>>m;
+		ll G[m];
+		for(ll i=0;i<m ;i++){
+			cin>>G[i];
+		}
+		solve(arr , n);
+		for(ll i=0;i<m;i++){
+			cout<<ans[G[i]]<<" ";
+		}
+		cout<<endl;
+	}
+
+	return 0;
+}
