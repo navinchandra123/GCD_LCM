@@ -1,0 +1,41 @@
+//   https://www.geeksforgeeks.org/smallest-number-divisible-n-least-k-trailing-zeros/
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define inf 100000000000000000
+#define ll long long int
+#define pb push_back
+#define f first
+#define s second
+#define mod 1000000007
+#define fast ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL)
+void mahakal(){
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	freopen("output.txt","w",stdout);
+	freopen("error.txt","w",stderr);
+	#endif
+}
+
+ll solve(ll n , ll k){
+	ll ps = pow(10LL,k);
+	ll g=__gcd(n,ps);
+	return (ps*n/(g));
+}
+
+int main(){
+	mahakal();fast;
+
+	ll t ;
+	cin>>t;
+	while(t--){
+
+		ll n ,m;
+		cin>>n>>m;
+		ll ans = solve(n,m);
+		cout<<ans<<endl;
+	}
+
+	return 0;
+}
